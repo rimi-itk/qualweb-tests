@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@qualweb/cli": "^0.6.6",
+    "commander": "^11.0.0"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "markdownlint-cli": "0.36.0",
+    "prettier": "3.0.3"
+  },
+  "scripts": {
+      "coding-standards-check/markdownlint": "markdownlint --ignore node_modules '*.md'",
+      "coding-standards-apply/prettier": "prettier bin/",
+      "coding-standards-check": "npm run coding-standards-check/markdownlint",
+      "coding-standards-apply/markdownlint": "markdownlint --ignore node_modules '*.md' --fix",
+      "coding-standards-apply/prettier": "prettier bin/ --write",
+      "coding-standards-apply": "npm run coding-standards-apply/markdownlint && npm run coding-standards-apply/prettier"
+  }
+}
