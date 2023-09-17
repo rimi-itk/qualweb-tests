@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
+IFS=$'\n\t'
+
+for f in "$@"; do
+    docker run --rm --interactive efrecon/jq:1.7 '{completeUrl: .system.url.completeUrl, uri: .system.url.uri, metadata: .metadata}' < "$f"
+    docker run --rm --interactive efrecon/jq:1.7 --exit-status '.metadata.failed == 0' < "$f" > /dev/null
+done
